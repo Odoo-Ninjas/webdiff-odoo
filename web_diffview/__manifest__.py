@@ -1,0 +1,12 @@
+{   'application': False,
+    'author': 'Marc Wimmer (marc@itewimmer.de)',
+    'css': ['static/diffview.less', 'static/res/style.css'],
+    'data': ['views/assets.xml'],
+    'demo': [],
+    'depends': ['web'],
+    'external_dependencies': {'bin': [], 'python': []},
+    'name': 'web_diffview',
+    'qweb': ['static/diffview.xml'],
+    'test': [],
+    'version': '14.0.1.0',
+    'web': True}

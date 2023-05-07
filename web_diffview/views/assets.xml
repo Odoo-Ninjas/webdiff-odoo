@@ -1,0 +1,7 @@
+<odoo><data>
+    <template id="assets_backend" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+        <link rel="stylesheet" href="/web_diffview/static/diffview.less"/><link rel="stylesheet" href="/web_diffview/static/res/style.css"/><script type="text/javascript" src="/web_diffview/static/diffview.js"/><script type="text/javascript" src="/web_diffview/static/res/diff.js"/></xpath>
+    </template>
+    </data>
+    </odoo>
