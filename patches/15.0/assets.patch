@@ -1,6 +1,6 @@
-From b834388a2f7d20c1a04b953d6f7199920a5e879e Mon Sep 17 00:00:00 2001
+From 452bfa7e56ef90b9acb13474ddef392485ce2d04 Mon Sep 17 00:00:00 2001
 From: Marc Wimmer <marc@itewimmer.de>
-Date: Mon, 8 May 2023 20:03:01 +0200
+Date: Mon, 8 May 2023 20:40:06 +0200
 Subject: [PATCH] for patch
 
 ---
@@ -10,7 +10,7 @@ Subject: [PATCH] for patch
  delete mode 100644 addons_zebroo/webdiff/web_diffview/views/assets.xml
 
 diff --git a/web_diffview/__manifest__.py b/web_diffview/__manifest__.py
-index 2059b31c0..d335f28b8 100644
+index 1eb2add99..e5cc35bc9 100644
 --- a/web_diffview/__manifest__.py
 +++ b/web_diffview/__manifest__.py
 @@ -1,7 +1,11 @@
@@ -18,7 +18,7 @@ index 2059b31c0..d335f28b8 100644
 +    'assets': {   'web.assets_backend': [   'web_diffview/static/diffview.less',
 +                                            'web_diffview/static/res/style.css',
 +                                            'web_diffview/static/diffview.js',
-+                                            'web_diffview/static/res/diff.js']},
++                                            'web_diffview/static/res/diff.js1']},
      'author': 'Marc Wimmer (marc@itewimmer.de)',
      'css': ['static/diffview.less', 'static/res/style.css'],
 -    'data': ['views/assets.xml'],
