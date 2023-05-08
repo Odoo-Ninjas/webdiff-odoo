@@ -1,0 +1,39 @@
+From 316e8e05e5baca2e06da3c6284a2e92fbb07962c Mon Sep 17 00:00:00 2001
+From: Marc Wimmer <marc@itewimmer.de>
+Date: Mon, 8 May 2023 19:36:21 +0200
+Subject: [PATCH] for patch
+
+---
+ web_diffview/__manifest__.py  | 4 ++++
+ web_diffview/views/assets.xml | 7 -------
+ 2 files changed, 4 insertions(+), 7 deletions(-)
+ delete mode 100644 addons_zebroo/webdiff/web_diffview/views/assets.xml
+
+diff --git a/web_diffview/__manifest__.py b/web_diffview/__manifest__.py
+index 2059b31c0..55f56ff86 100644
+--- a/web_diffview/__manifest__.py
++++ b/web_diffview/__manifest__.py
+@@ -1,4 +1,8 @@
+ {   'application': False,
++    'assets': {   'web.assets_backend': [   'web_diffview/static/diffview.less',
++                                            'web_diffview/static/res/style.css',
++                                            'web_diffview/static/diffview.js',
++                                            'web_diffview/static/res/diff.js']},
+     'author': 'Marc Wimmer (marc@itewimmer.de)',
+     'css': ['static/diffview.less', 'static/res/style.css'],
+     'data': ['views/assets.xml'],
+diff --git a/web_diffview/views/assets.xml b/web_diffview/views/assets.xml
+deleted file mode 100644
+index a64725d76..000000000
+--- a/web_diffview/views/assets.xml
++++ /dev/null
+@@ -1,7 +0,0 @@
+-<odoo><data>
+-    <template id="assets_backend" inherit_id="web.assets_backend">
+-        <xpath expr="." position="inside">
+-        <link rel="stylesheet" href="/web_diffview/static/diffview.less"/><link rel="stylesheet" href="/web_diffview/static/res/style.css"/><script type="text/javascript" src="/web_diffview/static/diffview.js"/><script type="text/javascript" src="/web_diffview/static/res/diff.js"/></xpath>
+-    </template>
+-    </data>
+-    </odoo>
+-- 
+2.34.1
