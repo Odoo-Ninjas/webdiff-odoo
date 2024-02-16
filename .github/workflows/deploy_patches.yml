@@ -11,5 +11,5 @@ jobs:
   deploy-subversions:
     uses: Odoo-Ninjas/git-workflows/.github/workflows/deploy_to_subversions.yml@v1
     with:
-      branches: "14.0"
+      branches: "14.0 15.0 16.0"
 
