@@ -8,5 +8,5 @@
     'name': 'web_diffview',
     'qweb': ['static/diffview.xml'],
     'test': [],
-    'version': '14.0.1.0',
+    'version': '1.0',
     'web': True}
