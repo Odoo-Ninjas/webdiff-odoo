@@ -1,0 +1,358 @@
+From 67d0beceda11b2571ae05985da2710fc8175dee9 Mon Sep 17 00:00:00 2001
+From: "github-action@github.com" <github-action@github.com>
+Date: Wed, 10 Jul 2024 19:53:26 +0000
+Subject: [PATCH] for patch
+
+---
+ patches/15.0/20240710_193125.patch | 107 --------------
+ patches/15.0/20240710_193253.patch | 223 -----------------------------
+ 2 files changed, 330 deletions(-)
+ delete mode 100644 addons_tools/webdiff/patches/15.0/20240710_193125.patch
+ delete mode 100644 addons_tools/webdiff/patches/15.0/20240710_193253.patch
+
+diff --git a/patches/15.0/20240710_193125.patch b/patches/15.0/20240710_193125.patch
+deleted file mode 100644
+index ab2bc22..0000000
+--- a/patches/15.0/20240710_193125.patch
++++ /dev/null
+@@ -1,107 +0,0 @@
+-From 8d3176e45b0c11cf04a21ee060736c5ec69b7de8 Mon Sep 17 00:00:00 2001
+-From: githubrunner <githubrunner>
+-Date: Wed, 10 Jul 2024 19:31:24 +0000
+-Subject: [PATCH] for patch
+-
+----
+- .github/workflows/deploy_patches.yml       |  2 +-
+- web_diffview/__manifest__.py               | 11 +----------
+- web_diffview/static/diffview.less          |  4 ----
+- web_diffview/static/src/diffview.css       |  4 ++++
+- web_diffview/static/{ => src}/diffview.js  |  0
+- web_diffview/static/{ => src}/diffview.xml |  0
+- web_diffview/views/assets.xml              | 12 ++++++++++++
+- 7 files changed, 18 insertions(+), 15 deletions(-)
+- delete mode 100644 addons_tools/webdiff/web_diffview/static/diffview.less
+- create mode 100644 addons_tools/webdiff/web_diffview/static/src/diffview.css
+- rename addons_tools/webdiff/web_diffview/static/{ => src}/diffview.js (100%)
+- rename addons_tools/webdiff/web_diffview/static/{ => src}/diffview.xml (100%)
+- create mode 100644 addons_tools/webdiff/web_diffview/views/assets.xml
+-
+-diff --git a/.github/workflows/deploy_patches.yml b/.github/workflows/deploy_patches.yml
+-index 61de959..4720bb4 100644
+---- a/.github/workflows/deploy_patches.yml
+-+++ b/.github/workflows/deploy_patches.yml
+-@@ -11,5 +11,5 @@ jobs:
+-   deploy-subversions:
+-     uses: Odoo-Ninjas/git-workflows/.github/workflows/deploy_to_subversions.yml@v1
+-     with:
+--      branches: "16.0"
+-+      branches: "14.0 15.0 16.0"
+- 
+-diff --git a/web_diffview/__manifest__.py b/web_diffview/__manifest__.py
+-index 47f7ffa..44b23b3 100644
+---- a/web_diffview/__manifest__.py
+-+++ b/web_diffview/__manifest__.py
+-@@ -1,14 +1,5 @@
+- {
+-     "application": False,
+--    "assets": {
+--        "web.assets_backend": [
+--            "web_diffview/static/diffview.less",
+--            "web_diffview/static/res/style.css",
+--            "web_diffview/static/diffview.js",
+--            "web_diffview/static/res/diff.js",
+--        ],
+--        "web.assets_qweb": ["web_diffview/static/diffview.xml"],
+--    },
+-     "author": "Marc Wimmer (marc@itewimmer.de)",
+-     "css": ["static/diffview.less", "static/res/style.css"],
+-     "data": [],
+-@@ -17,6 +8,6 @@
+-     "external_dependencies": {"bin": [], "python": []},
+-     "name": "web_diffview",
+-     "test": [],
+--    "version": "14.0.1.0",
+-+    "version": "1.0",
+-     "web": True,
+- }
+-diff --git a/web_diffview/static/diffview.less b/web_diffview/static/diffview.less
+-deleted file mode 100644
+-index 3b2186c..0000000
+---- a/web_diffview/static/diffview.less
+-+++ /dev/null
+-@@ -1,4 +0,0 @@
+--div.o-diff-preview {
+--    position: absolute;
+--    left: 0px;
+--}
+-diff --git a/web_diffview/static/src/diffview.css b/web_diffview/static/src/diffview.css
+-new file mode 100644
+-index 0000000..d98dcf4
+---- /dev/null
+-+++ b/web_diffview/static/src/diffview.css
+-@@ -0,0 +1,4 @@
+-+div.o-diff-preview {
+-+  position: absolute;
+-+  left: 0px;
+-+}
+-diff --git a/web_diffview/static/diffview.js b/web_diffview/static/src/diffview.js
+-similarity index 100%
+-rename from web_diffview/static/diffview.js
+-rename to web_diffview/static/src/diffview.js
+-diff --git a/web_diffview/static/diffview.xml b/web_diffview/static/src/diffview.xml
+-similarity index 100%
+-rename from web_diffview/static/diffview.xml
+-rename to web_diffview/static/src/diffview.xml
+-diff --git a/web_diffview/views/assets.xml b/web_diffview/views/assets.xml
+-new file mode 100644
+-index 0000000..5883a1a
+---- /dev/null
+-+++ b/web_diffview/views/assets.xml
+-@@ -0,0 +1,12 @@
+-+<odoo>
+-+    <data>
+-+        <template id="assets_backend" inherit_id="web.assets_backend">
+-+            <xpath expr="." position="inside">
+-+                <link rel="stylesheet" href="/web_diffview/static/src/diffview.less"/>
+-+                <link rel="stylesheet" href="/web_diffview/static/res/style.css"/>
+-+                <script type="text/javascript" src="/web_diffview/static/src/diffview.js"/>
+-+                <script type="text/javascript" src="/web_diffview/static/res/diff.js"/>
+-+            </xpath>
+-+        </template>
+-+    </data>
+-+</odoo>
+-\ No newline at end of file
+--- 
+-2.34.1
+\ No newline at end of file
+diff --git a/patches/15.0/20240710_193253.patch b/patches/15.0/20240710_193253.patch
+deleted file mode 100644
+index dc6fd71..0000000
+--- a/patches/15.0/20240710_193253.patch
++++ /dev/null
+@@ -1,223 +0,0 @@
+-From cd946d968da0d41c65b2d9cf5c77befa2d4b06e5 Mon Sep 17 00:00:00 2001
+-From: githubrunner <githubrunner>
+-Date: Wed, 10 Jul 2024 19:32:53 +0000
+-Subject: [PATCH] for patch
+-
+----
+- .github/workflows/deploy_patches.yml       |   2 +-
+- patches/15.0/20240710_193125.patch         | 107 +++++++++++++++++++++
+- web_diffview/__manifest__.py               |  11 +--
+- web_diffview/static/diffview.less          |   4 -
+- web_diffview/static/src/diffview.css       |   4 +
+- web_diffview/static/{ => src}/diffview.js  |   0
+- web_diffview/static/{ => src}/diffview.xml |   0
+- web_diffview/views/assets.xml              |  12 +++
+- 8 files changed, 125 insertions(+), 15 deletions(-)
+- create mode 100644 addons_tools/webdiff/patches/15.0/20240710_193125.patch
+- delete mode 100644 addons_tools/webdiff/web_diffview/static/diffview.less
+- create mode 100644 addons_tools/webdiff/web_diffview/static/src/diffview.css
+- rename addons_tools/webdiff/web_diffview/static/{ => src}/diffview.js (100%)
+- rename addons_tools/webdiff/web_diffview/static/{ => src}/diffview.xml (100%)
+- create mode 100644 addons_tools/webdiff/web_diffview/views/assets.xml
+-
+-diff --git a/.github/workflows/deploy_patches.yml b/.github/workflows/deploy_patches.yml
+-index 61de959..4720bb4 100644
+---- a/.github/workflows/deploy_patches.yml
+-+++ b/.github/workflows/deploy_patches.yml
+-@@ -11,5 +11,5 @@ jobs:
+-   deploy-subversions:
+-     uses: Odoo-Ninjas/git-workflows/.github/workflows/deploy_to_subversions.yml@v1
+-     with:
+--      branches: "16.0"
+-+      branches: "14.0 15.0 16.0"
+- 
+-diff --git a/patches/15.0/20240710_193125.patch b/patches/15.0/20240710_193125.patch
+-new file mode 100644
+-index 0000000..ab2bc22
+---- /dev/null
+-+++ b/patches/15.0/20240710_193125.patch
+-@@ -0,0 +1,107 @@
+-+From 8d3176e45b0c11cf04a21ee060736c5ec69b7de8 Mon Sep 17 00:00:00 2001
+-+From: githubrunner <githubrunner>
+-+Date: Wed, 10 Jul 2024 19:31:24 +0000
+-+Subject: [PATCH] for patch
+-+
+-+---
+-+ .github/workflows/deploy_patches.yml       |  2 +-
+-+ web_diffview/__manifest__.py               | 11 +----------
+-+ web_diffview/static/diffview.less          |  4 ----
+-+ web_diffview/static/src/diffview.css       |  4 ++++
+-+ web_diffview/static/{ => src}/diffview.js  |  0
+-+ web_diffview/static/{ => src}/diffview.xml |  0
+-+ web_diffview/views/assets.xml              | 12 ++++++++++++
+-+ 7 files changed, 18 insertions(+), 15 deletions(-)
+-+ delete mode 100644 addons_tools/webdiff/web_diffview/static/diffview.less
+-+ create mode 100644 addons_tools/webdiff/web_diffview/static/src/diffview.css
+-+ rename addons_tools/webdiff/web_diffview/static/{ => src}/diffview.js (100%)
+-+ rename addons_tools/webdiff/web_diffview/static/{ => src}/diffview.xml (100%)
+-+ create mode 100644 addons_tools/webdiff/web_diffview/views/assets.xml
+-+
+-+diff --git a/.github/workflows/deploy_patches.yml b/.github/workflows/deploy_patches.yml
+-+index 61de959..4720bb4 100644
+-+--- a/.github/workflows/deploy_patches.yml
+-++++ b/.github/workflows/deploy_patches.yml
+-+@@ -11,5 +11,5 @@ jobs:
+-+   deploy-subversions:
+-+     uses: Odoo-Ninjas/git-workflows/.github/workflows/deploy_to_subversions.yml@v1
+-+     with:
+-+-      branches: "16.0"
+-++      branches: "14.0 15.0 16.0"
+-+ 
+-+diff --git a/web_diffview/__manifest__.py b/web_diffview/__manifest__.py
+-+index 47f7ffa..44b23b3 100644
+-+--- a/web_diffview/__manifest__.py
+-++++ b/web_diffview/__manifest__.py
+-+@@ -1,14 +1,5 @@
+-+ {
+-+     "application": False,
+-+-    "assets": {
+-+-        "web.assets_backend": [
+-+-            "web_diffview/static/diffview.less",
+-+-            "web_diffview/static/res/style.css",
+-+-            "web_diffview/static/diffview.js",
+-+-            "web_diffview/static/res/diff.js",
+-+-        ],
+-+-        "web.assets_qweb": ["web_diffview/static/diffview.xml"],
+-+-    },
+-+     "author": "Marc Wimmer (marc@itewimmer.de)",
+-+     "css": ["static/diffview.less", "static/res/style.css"],
+-+     "data": [],
+-+@@ -17,6 +8,6 @@
+-+     "external_dependencies": {"bin": [], "python": []},
+-+     "name": "web_diffview",
+-+     "test": [],
+-+-    "version": "14.0.1.0",
+-++    "version": "1.0",
+-+     "web": True,
+-+ }
+-+diff --git a/web_diffview/static/diffview.less b/web_diffview/static/diffview.less
+-+deleted file mode 100644
+-+index 3b2186c..0000000
+-+--- a/web_diffview/static/diffview.less
+-++++ /dev/null
+-+@@ -1,4 +0,0 @@
+-+-div.o-diff-preview {
+-+-    position: absolute;
+-+-    left: 0px;
+-+-}
+-+diff --git a/web_diffview/static/src/diffview.css b/web_diffview/static/src/diffview.css
+-+new file mode 100644
+-+index 0000000..d98dcf4
+-+--- /dev/null
+-++++ b/web_diffview/static/src/diffview.css
+-+@@ -0,0 +1,4 @@
+-++div.o-diff-preview {
+-++  position: absolute;
+-++  left: 0px;
+-++}
+-+diff --git a/web_diffview/static/diffview.js b/web_diffview/static/src/diffview.js
+-+similarity index 100%
+-+rename from web_diffview/static/diffview.js
+-+rename to web_diffview/static/src/diffview.js
+-+diff --git a/web_diffview/static/diffview.xml b/web_diffview/static/src/diffview.xml
+-+similarity index 100%
+-+rename from web_diffview/static/diffview.xml
+-+rename to web_diffview/static/src/diffview.xml
+-+diff --git a/web_diffview/views/assets.xml b/web_diffview/views/assets.xml
+-+new file mode 100644
+-+index 0000000..5883a1a
+-+--- /dev/null
+-++++ b/web_diffview/views/assets.xml
+-+@@ -0,0 +1,12 @@
+-++<odoo>
+-++    <data>
+-++        <template id="assets_backend" inherit_id="web.assets_backend">
+-++            <xpath expr="." position="inside">
+-++                <link rel="stylesheet" href="/web_diffview/static/src/diffview.less"/>
+-++                <link rel="stylesheet" href="/web_diffview/static/res/style.css"/>
+-++                <script type="text/javascript" src="/web_diffview/static/src/diffview.js"/>
+-++                <script type="text/javascript" src="/web_diffview/static/res/diff.js"/>
+-++            </xpath>
+-++        </template>
+-++    </data>
+-++</odoo>
+-+\ No newline at end of file
+-+-- 
+-+2.34.1
+-\ No newline at end of file
+-diff --git a/web_diffview/__manifest__.py b/web_diffview/__manifest__.py
+-index 47f7ffa..44b23b3 100644
+---- a/web_diffview/__manifest__.py
+-+++ b/web_diffview/__manifest__.py
+-@@ -1,14 +1,5 @@
+- {
+-     "application": False,
+--    "assets": {
+--        "web.assets_backend": [
+--            "web_diffview/static/diffview.less",
+--            "web_diffview/static/res/style.css",
+--            "web_diffview/static/diffview.js",
+--            "web_diffview/static/res/diff.js",
+--        ],
+--        "web.assets_qweb": ["web_diffview/static/diffview.xml"],
+--    },
+-     "author": "Marc Wimmer (marc@itewimmer.de)",
+-     "css": ["static/diffview.less", "static/res/style.css"],
+-     "data": [],
+-@@ -17,6 +8,6 @@
+-     "external_dependencies": {"bin": [], "python": []},
+-     "name": "web_diffview",
+-     "test": [],
+--    "version": "14.0.1.0",
+-+    "version": "1.0",
+-     "web": True,
+- }
+-diff --git a/web_diffview/static/diffview.less b/web_diffview/static/diffview.less
+-deleted file mode 100644
+-index 3b2186c..0000000
+---- a/web_diffview/static/diffview.less
+-+++ /dev/null
+-@@ -1,4 +0,0 @@
+--div.o-diff-preview {
+--    position: absolute;
+--    left: 0px;
+--}
+-diff --git a/web_diffview/static/src/diffview.css b/web_diffview/static/src/diffview.css
+-new file mode 100644
+-index 0000000..d98dcf4
+---- /dev/null
+-+++ b/web_diffview/static/src/diffview.css
+-@@ -0,0 +1,4 @@
+-+div.o-diff-preview {
+-+  position: absolute;
+-+  left: 0px;
+-+}
+-diff --git a/web_diffview/static/diffview.js b/web_diffview/static/src/diffview.js
+-similarity index 100%
+-rename from web_diffview/static/diffview.js
+-rename to web_diffview/static/src/diffview.js
+-diff --git a/web_diffview/static/diffview.xml b/web_diffview/static/src/diffview.xml
+-similarity index 100%
+-rename from web_diffview/static/diffview.xml
+-rename to web_diffview/static/src/diffview.xml
+-diff --git a/web_diffview/views/assets.xml b/web_diffview/views/assets.xml
+-new file mode 100644
+-index 0000000..5883a1a
+---- /dev/null
+-+++ b/web_diffview/views/assets.xml
+-@@ -0,0 +1,12 @@
+-+<odoo>
+-+    <data>
+-+        <template id="assets_backend" inherit_id="web.assets_backend">
+-+            <xpath expr="." position="inside">
+-+                <link rel="stylesheet" href="/web_diffview/static/src/diffview.less"/>
+-+                <link rel="stylesheet" href="/web_diffview/static/res/style.css"/>
+-+                <script type="text/javascript" src="/web_diffview/static/src/diffview.js"/>
+-+                <script type="text/javascript" src="/web_diffview/static/res/diff.js"/>
+-+            </xpath>
+-+        </template>
+-+    </data>
+-+</odoo>
+-\ No newline at end of file
+--- 
+-2.34.1
+\ No newline at end of file
+-- 
+2.34.1
