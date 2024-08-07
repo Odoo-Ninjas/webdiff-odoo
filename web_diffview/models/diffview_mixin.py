@@ -9,6 +9,7 @@ from odoo.exceptions import UserError, RedirectWarning, ValidationError
 
 class DiffViewMixin(models.Model):
     _name = "mixin.diffview"
+    _description = "Diff View Mixin"
 
     def _gitdiff(self, content1, content2):
         if not content1 or not content2:
