@@ -1,0 +1,8 @@
+{
+	"window.title": "${rootName}@${remoteName}${separator}[Branch: main]",
+	"workbench.colorCustomizations": {
+		"activityBar.background": "#5A1403",
+		"titleBar.activeBackground": "#7E1C05",
+		"titleBar.activeForeground": "#FFFBFA"
+	}
+}
