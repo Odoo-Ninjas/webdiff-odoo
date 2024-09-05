@@ -3,11 +3,9 @@
     "assets": {
         "web.assets_backend": [
             "web_diffview/static/src/diffview.css",
-            "web_diffview/static/res/style.css",
             "web_diffview/static/src/diffview.js",
-            "web_diffview/static/res/diff.js",
             "web_diffview/static/src/diffview.xml",
-        ],
+        ]
     },
     "author": "Marc Wimmer (marc@zebroo.de)",
     "data": [],

@@ -5,6 +5,7 @@ import uuid
 from pathlib import Path
 from odoo import _, api, fields, models, SUPERUSER_ID
 from odoo.exceptions import UserError, RedirectWarning, ValidationError
+import difflib
 
 
 class DiffViewMixin(models.Model):
@@ -14,19 +15,11 @@ class DiffViewMixin(models.Model):
     def _gitdiff(self, content1, content2):
         if not content1 or not content2:
             return ""
+        text1_lines = content1.splitlines()
+        text2_lines = content2.splitlines()
+        html_diff = difflib.HtmlDiff()
 
-        return content1 + "!#!#!#!##!#!#!#!!!#######!!!!!!#!#!#!" + content2
-
-        # parent_path = Path(tempfile.mkdtemp())
-
-        # path1 = parent_path / str(uuid.uuid4())
-        # path2 = parent_path / str(uuid.uuid4())
-        # filename3 = parent_path / str(uuid.uuid4())
-        # path1.write_text(content1)
-        # path2.write_text(content2)
-        # try:
-        #     os.system(f'git diff "{path1}" "{path2}" > "{filename3}"')
-        #     res = filename3.read_text()
-        # finally:
-        #     shutil.rmtree(parent_path)
-        # return res
+        html_output = html_diff.make_file(
+            text1_lines, text2_lines, fromdesc="Original", todesc="Modified"
+        )
+        return html_output

@@ -1,54 +1,33 @@
-import { registry } from '@web/core/registry';
-import { Component } from '@odoo/owl';
+/** @odoo-module **/
 
-class DiffView extends Component {
-    static template = 'diff_view.widget';
+import { registry } from '@web/core/registry';
+import { CharField } from "@web/views/fields/char/char_field";
+const { Component, onWillUpdateProps, useRef, onMounted, useState } = owl;
+
+export class DiffView extends CharField {
 
     setup() {
-        this.diffString = this.props.text || "Hello, Odoo 16!";
+        super.setup();
+        this.iframe = useRef('iframe1');
+        onWillUpdateProps((nextProps) => this.putHtmlIntoIFrame(nextProps));
     }
-    format() {
-        var parts = this.diffString.split("!#!#!#!##!#!#!#!!!#######!!!!!!#!#!#!");
-        if (parts.length <= 1) {
-            $(targetElement).html("no diff");
-            return;
-        }
-        var targetElement = this.$el[0];
-        var configuration = {
-            drawFileList: false,
-            //matching: 'lines'
-            highlight: true,
-            //outputFormat: 'side-by-side',
-            outputFormat: 'line-by-line',
-        };
-        var diff = JsDiff['diffWords'](parts[0], parts[1]);
-        var fragment = document.createDocumentFragment();
-        for (var i = 0; i < diff.length; i++) {
-
-            if (diff[i].added && diff[i + 1] && diff[i + 1].removed) {
-                var swap = diff[i];
-                diff[i] = diff[i + 1];
-                diff[i + 1] = swap;
-            }
-
-            var node;
-            if (diff[i].removed) {
-                node = document.createElement('del');
-                node.appendChild(document.createTextNode(diff[i].value));
-            } else if (diff[i].added) {
-                node = document.createElement('ins');
-                node.appendChild(document.createTextNode(diff[i].value));
-            } else {
-                node = document.createTextNode(diff[i].value);
-            }
-            fragment.appendChild(node);
-        }
-
-        $(targetElement).html("");
-        $("<pre/>").appendTo($(targetElement))[0].appendChild(fragment);
+    putHtmlIntoIFrame(nextProps) {
+        const val = nextProps.value || "";
+        const $el = this.iframe.el;
+        const doc = $el.contentWindow.document;
+        doc.open();
+        doc.write(val);
+        doc.close();
+    }
+    get formattedValue() {
+        debugger;
+        return this.props.value;
     }
 }
 
-SimpleStringWidget.props = {
-    text: { type: String },
-};
+// DiffView.props = {
+//     text: { type: String },
+// };
+DiffView.template = "diff_view.widget";
+DiffView.supportedTypes = ["char", "text"];
+registry.category("fields").add("diff_view", DiffView);
