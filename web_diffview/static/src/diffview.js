@@ -12,16 +12,24 @@ export class DiffView extends CharField {
         onWillUpdateProps((nextProps) => this.putHtmlIntoIFrame(nextProps));
     }
     putHtmlIntoIFrame(nextProps) {
+        debugger;
         const val = nextProps.value || "";
+        if (!this.iframe) {
+            return;
+        }
         const $el = this.iframe.el;
+        if (!$el) {
+            return;
+        }
         const doc = $el.contentWindow.document;
         doc.open();
         doc.write(val);
         doc.close();
     }
     get formattedValue() {
-        debugger;
-        return this.props.value;
+        const val = this.props.record._textValues[this.props.name];
+        this.putHtmlIntoIFrame({ value: val });
+        return val;
     }
 }
 
@@ -29,5 +37,7 @@ export class DiffView extends CharField {
 //     text: { type: String },
 // };
 DiffView.template = "diff_view.widget";
-DiffView.supportedTypes = ["char", "text"];
-registry.category("fields").add("diff_view", DiffView);
+registry.category("fields").add("diff_view", {
+    component: DiffView,
+    supportedTypes: ["char", "text"]
+});
